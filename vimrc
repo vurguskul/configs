@@ -28,7 +28,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-colorscheme 0x7A69_dark
+colorscheme Chasing_Logic
 set number
 set tabstop=2
 set t_Co=256                        " force vim to use 256 colors
