@@ -21,6 +21,25 @@ let python_highlight_all=1
 syntax on
 """""""""""""""""""""""""""""
 
+function CPPQuotesToBraces()
+    let save_cursor = getpos(".")
+    :s/"/</
+    :s/.*\zs"/>/
+    call setpos('.', save_cursor)
+endfunction
+
+function CPPBracesToQuotes()
+    let save_cursor = getpos(".")
+    :s/</"/
+    :s/>/"/
+    call setpos('.', save_cursor)
+endfunction
+
+let @l='call CPPQuotesToBraces()'
+let @g='call CPPBracesToQuotes()'
+
+"  let @l=':s/"/</'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -32,6 +51,8 @@ set tabstop=4
 set shiftwidth=4
 " " On pressing tab, insert 4 spaces
 set expandtab
+set clipboard=unnamedplus
+
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -42,7 +63,8 @@ set expandtab
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-colorscheme Chasing_Logic
+" colorscheme Chasing_Logic
+colorscheme ron
 syntax on
 set number
 set tabstop=2
