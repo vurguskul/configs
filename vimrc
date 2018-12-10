@@ -38,6 +38,9 @@ endfunction
 let @l='call CPPQuotesToBraces()'
 let @g='call CPPBracesToQuotes()'
 
+" Highlight Groovy
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
 "  let @l=':s/"/</'
 
 " All of your Plugins must be added before the following line
