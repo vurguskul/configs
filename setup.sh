@@ -5,7 +5,7 @@ if [ -f $HOME/.tmux.conf ]; then
     mv ~/.tmux.conf ~/.tmux.conf_bak
 fi
 
-if [ -f .$HOMEvimrc ]; then
+if [ -f $HOME/.vimrc ]; then
     echo "Existing .vimrc  was found. Moving to .vimrc_bak ...!"
     mv $HOME/.vimrc $HOME/.vimrc_bak
 fi
