@@ -10,7 +10,6 @@ plus a small installer that symlinks them into `$HOME`.
 | `tmux.conf`     | tmux configuration (targets tmux 3.0+) |
 | `vimrc`         | Vim configuration, managed with Vundle |
 | `setup.sh`      | Backs up existing dotfiles, symlinks these into `$HOME`, installs plugin managers |
-| `settings.json` | RGB keyboard-zone lighting profile (see [Notes](#notes)) |
 
 ## Install
 
@@ -61,7 +60,4 @@ cd ~/configs
 
 ## Notes
 
-- `settings.json` is an unrelated RGB keyboard lighting profile (four static
-  zones, all off, low brightness). It is kept here for convenience and is not
-  touched by `setup.sh`.
 - No shell (`bashrc`/`zshrc`) or Git config is included.
