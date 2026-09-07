@@ -1,7 +1,7 @@
 # configs
 
-Personal dotfiles for a terminal-centric development setup: **tmux** and **Vim**,
-plus a small installer that symlinks them into `$HOME`.
+Personal dotfiles for a terminal-centric development setup: **tmux**, **Vim**, and
+**zsh** (oh-my-zsh), plus a small installer that symlinks them into `$HOME`.
 
 ## Contents
 
@@ -9,7 +9,8 @@ plus a small installer that symlinks them into `$HOME`.
 |-----------------|---------|
 | `tmux.conf`     | tmux configuration (targets tmux 3.0+) |
 | `vimrc`         | Vim configuration, managed with Vundle |
-| `setup.sh`      | Backs up existing dotfiles, symlinks these into `$HOME`, installs plugin managers |
+| `zshrc`         | zsh configuration, loads oh-my-zsh |
+| `setup.sh`      | Backs up existing dotfiles, installs zsh + oh-my-zsh, symlinks these into `$HOME`, installs plugin managers |
 
 ## Install
 
@@ -21,10 +22,14 @@ cd ~/configs
 
 `setup.sh` will:
 
-1. Move any existing `~/.tmux.conf` / `~/.vimrc` aside to `*_bak`.
-2. Symlink `tmux.conf` → `~/.tmux.conf` and `vimrc` → `~/.vimrc`.
-3. Clone [Vundle](https://github.com/VundleVim/Vundle.vim) into `~/.vim/bundle/Vundle.vim`.
-4. Clone [tpm](https://github.com/tmux-plugins/tpm) into `~/.tmux/plugins/tpm`.
+1. Move any existing `~/.tmux.conf` / `~/.vimrc` / `~/.zshrc` aside to `*_bak`.
+2. Install `zsh` via the detected package manager (`pacman`/`apt`/`dnf`/`brew`) if missing.
+3. Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) into `~/.oh-my-zsh` (unattended;
+   keeps our `zshrc`, does not `chsh` or launch a shell).
+4. Symlink `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`, `zshrc` → `~/.zshrc`.
+5. Clone [Vundle](https://github.com/VundleVim/Vundle.vim) into `~/.vim/bundle/Vundle.vim`.
+6. Clone [tpm](https://github.com/tmux-plugins/tpm) into `~/.tmux/plugins/tpm`.
+7. Set `zsh` as the default login shell (`chsh`) if it isn't already.
 
 ### Finish setup
 
@@ -32,6 +37,8 @@ cd ~/configs
   separate compile step (`~/.vim/bundle/YouCompleteMe/install.py`).
 - **tmux plugins:** start tmux and press `prefix + I` (prefix is `C-a`) to have
   tpm fetch the plugins.
+- **zsh:** log out and back in for the shell change to take effect. Put machine-local
+  tweaks in `~/.zshrc.local` (sourced if present, not tracked here).
 
 ## tmux highlights
 
@@ -58,6 +65,13 @@ cd ~/configs
   - `@l` — convert `"header.h"` to `<header.h>` on the current line.
   - `@g` — convert `<header.h>` back to `"header.h"`.
 
+## zshrc highlights
+
+- Loads oh-my-zsh with the `robbyrussell` theme and the `git` / `tmux` plugins.
+- 10k-line shared history with de-duplication.
+- `EDITOR`/`VISUAL` set to `vim`.
+- Sources `~/.zshrc.local` for machine-specific settings if it exists.
+
 ## Notes
 
-- No shell (`bashrc`/`zshrc`) or Git config is included.
+- No `bashrc` or Git config is included.
