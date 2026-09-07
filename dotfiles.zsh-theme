@@ -1,4 +1,4 @@
-# configs.zsh-theme
+# dotfiles.zsh-theme
 # Current folder name, git branch (if any), 24h time with seconds.
 # The final prompt char (❯) turns red when the last command exited non-zero.
 
