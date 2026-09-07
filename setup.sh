@@ -1,19 +1,13 @@
 #!/bin/bash
 
-if [ -f $HOME/.tmux.conf ]; then
-    echo "Existing .tmux.conf was found. Moving to .tmux.conf_bak ...!"
-    mv ~/.tmux.conf ~/.tmux.conf_bak
-fi
-
-if [ -f $HOME/.vimrc ]; then
-    echo "Existing .vimrc  was found. Moving to .vimrc_bak ...!"
-    mv $HOME/.vimrc $HOME/.vimrc_bak
-fi
-
-if [ -f $HOME/.zshrc ]; then
-    echo "Existing .zshrc  was found. Moving to .zshrc_bak ...!"
-    mv $HOME/.zshrc $HOME/.zshrc_bak
-fi
+# Back up real files that are in the way, but leave existing symlinks alone
+# (re-running setup.sh just refreshes them below).
+for f in .tmux.conf .vimrc .zshrc; do
+    if [ -f "$HOME/$f" ] && [ ! -L "$HOME/$f" ]; then
+        echo "Existing $f was found. Moving to ${f}_bak ...!"
+        mv "$HOME/$f" "$HOME/${f}_bak"
+    fi
+done
 
 echo "Installing zsh..."
 if ! command -v zsh >/dev/null 2>&1; then
@@ -42,11 +36,11 @@ fi
 
 echo "Creating links..."
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ln -s $DIR/tmux.conf ~/.tmux.conf
-ln -s $DIR/vimrc ~/.vimrc
-ln -s $DIR/zshrc ~/.zshrc
+ln -sfn "$DIR/tmux.conf" ~/.tmux.conf
+ln -sfn "$DIR/vimrc" ~/.vimrc
+ln -sfn "$DIR/zshrc" ~/.zshrc
 mkdir -p ~/.oh-my-zsh/custom/themes
-ln -sf $DIR/configs.zsh-theme ~/.oh-my-zsh/custom/themes/configs.zsh-theme
+ln -sfn "$DIR/dotfiles.zsh-theme" ~/.oh-my-zsh/custom/themes/dotfiles.zsh-theme
 
 echo "Installing plugin managers..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
