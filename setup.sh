@@ -45,6 +45,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ln -s $DIR/tmux.conf ~/.tmux.conf
 ln -s $DIR/vimrc ~/.vimrc
 ln -s $DIR/zshrc ~/.zshrc
+mkdir -p ~/.oh-my-zsh/custom/themes
+ln -sf $DIR/configs.zsh-theme ~/.oh-my-zsh/custom/themes/configs.zsh-theme
 
 echo "Installing plugin managers..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
