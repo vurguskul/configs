@@ -10,6 +10,7 @@ Personal dotfiles for a terminal-centric development setup: **tmux**, **Vim**, a
 | `tmux.conf`     | tmux configuration (targets tmux 3.0+) |
 | `vimrc`         | Vim configuration, managed with Vundle |
 | `zshrc`         | zsh configuration, loads oh-my-zsh |
+| `configs.zsh-theme` | Custom oh-my-zsh prompt theme (folder, git branch, time) |
 | `setup.sh`      | Backs up existing dotfiles, installs zsh + oh-my-zsh, symlinks these into `$HOME`, installs plugin managers |
 
 ## Install
@@ -26,7 +27,8 @@ cd ~/configs
 2. Install `zsh` via the detected package manager (`pacman`/`apt`/`dnf`/`brew`) if missing.
 3. Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) into `~/.oh-my-zsh` (unattended;
    keeps our `zshrc`, does not `chsh` or launch a shell).
-4. Symlink `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`, `zshrc` → `~/.zshrc`.
+4. Symlink `tmux.conf` → `~/.tmux.conf`, `vimrc` → `~/.vimrc`, `zshrc` → `~/.zshrc`,
+   and `configs.zsh-theme` → `~/.oh-my-zsh/custom/themes/configs.zsh-theme`.
 5. Clone [Vundle](https://github.com/VundleVim/Vundle.vim) into `~/.vim/bundle/Vundle.vim`.
 6. Clone [tpm](https://github.com/tmux-plugins/tpm) into `~/.tmux/plugins/tpm`.
 7. Set `zsh` as the default login shell (`chsh`) if it isn't already.
@@ -67,7 +69,9 @@ cd ~/configs
 
 ## zshrc highlights
 
-- Loads oh-my-zsh with the `robbyrussell` theme and the `git` / `tmux` plugins.
+- Loads oh-my-zsh with the custom `configs` theme (`configs.zsh-theme`, symlinked
+  into `~/.oh-my-zsh/custom/themes/`) and the `git` / `tmux` plugins. The prompt
+  shows the current folder, git branch, and 24h time with seconds.
 - 10k-line shared history with de-duplication.
 - `EDITOR`/`VISUAL` set to `vim`.
 - Sources `~/.zshrc.local` for machine-specific settings if it exists.

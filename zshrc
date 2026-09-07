@@ -1,7 +1,9 @@
 # Path to oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+# Custom theme: ~/.oh-my-zsh/custom/themes/configs.zsh-theme
+# (setup.sh symlinks it from this repo). Shows folder, git branch, time.
+ZSH_THEME="configs"
 
 # Plugins live in ~/.oh-my-zsh/plugins/* and ~/.oh-my-zsh/custom/plugins/*
 plugins=(git tmux)
